@@ -1,14 +1,23 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
-
+import SignUp from './SignUp';
+import { useState } from 'react';
 function Corp() {
+
+  const [showAdditionalSign, setShowAdditionalSign] = useState(false);
+    
+  const handleSignUp = () => {
+      setShowAdditionalSign(!showAdditionalSign);
+  };
+
   return (
     <section className='mocha mt-20 relative flex flex-col flex-grow'>
       <div id='main' className='flex space-x-1 w-full h-96 mb-28'>
         <div className=' w-1/2 ml-20 mt-20 '>
           <div className='text-2xl font-extrabold text-overlay0 mb-5'>Start learning with us now</div>
           <div className='text-text mb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laboriosam  voluptates sed beatae?</div>
-          <button className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Start learning</button>
+          <button onClick={handleSignUp} className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Start learning</button>
         </div>
         <div className=' relative flex h-fil w-2/3 items ml-20'>
           <Image
@@ -70,6 +79,7 @@ function Corp() {
         <button className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Join community on Discord</button>
       </div>
       </div>
+      {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
     </section>
   )
 }
