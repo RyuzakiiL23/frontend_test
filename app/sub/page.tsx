@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import Butt from '@/components/Butt';
 
 function Page() {
   const [username, setUsername] = useState("");
@@ -44,6 +45,8 @@ function Page() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type='button' onClick={handleSubmit}>Submit</button>
+      <br /><br />
+      <Butt />
     </div>
   );
 }

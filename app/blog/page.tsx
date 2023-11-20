@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Blog() {
   return (
-    <main className="overflow-hidden mocha text-text bg-surface0">
+    <main className=" mocha text-text bg-surface0">
       <Header />
       <div className='mocha flex flex-wrap relative w-[90%] m-auto'>
         <div className='flex flex-col mt-20 mb-10 w-full'>

@@ -1,31 +1,35 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react';
+import SignUp from './SignUp';
 
-const Submit = ({ showAdditionalContent, setShowAdditionalContent }) => {
-    const popupRef = useRef(null);
+interface SubmitProps {
+    showAdditionalContent: boolean;
+    setShowAdditionalContent: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Submit: React.FC<SubmitProps> = ({ showAdditionalContent, setShowAdditionalContent }) => {
+    const popupRef = useRef<HTMLDivElement>(null);
+    const [showAdditionalSign, setShowAdditionalSign] = useState<boolean>(false);
 
     useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                setShowAdditionalContent(false);
+            }
+        };
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [setShowAdditionalContent]);
 
-    const [showAdditionalSign, setShowAdditionalSign] = useState(false);
-    
     const handleSignUp = () => {
         setShowAdditionalSign(!showAdditionalSign);
-    };    
-
-    const handleClickOutside = (event) => {
-        if (popupRef.current && !popupRef.current.contains(event.target)) {
-            setShowAdditionalContent(false);
-        }
     };
 
     return (
-        
         <div ref={popupRef} className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[500px] w-[400px] bg-base'>
             <h1 className='text-text font-bold text-center'>Login</h1>
             <div className='flex flex-col items-center'>
@@ -44,3 +48,4 @@ const Submit = ({ showAdditionalContent, setShowAdditionalContent }) => {
 };
 
 export default Submit;
+
