@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import SignUp from './SignUp';
+import Cookies from 'universal-cookie';
 
 interface LoginProps {
     showAdditionalContent: boolean;
@@ -14,6 +15,8 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [err, setErr] = useState('');
+    const cookies = new Cookies();
+    const [authenticated, setAuthenticated] = useState(false);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -50,8 +53,12 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
             const data = await response.json();
             console.log(data);
 
+            //id from backend needed
             if (data.message === 'success') {
-                window.location.href = '/sub';
+                cookies.set('authToken', data.id, { path: '/' });
+                // cookies.set('authToken', '86d8d7ea-93ec-4628-81a8-2bd59ddcb3d', { path: '/' });
+                setAuthenticated(true);
+                window.location.href = '/';
             }
         } catch (error) {
             setErr(String(error))
@@ -60,7 +67,7 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
     };
 
     return (
-        <div ref={popupRef} className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[500px] w-[400px] bg-base'>
+        <div ref={popupRef} className=' z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[500px] w-[400px] bg-base'>
             <h1 className='text-text font-bold text-center'>Login</h1>
             <div className='flex flex-col items-center'>
                 <input

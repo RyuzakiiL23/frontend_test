@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import Login from './Login';
+import Cookies from 'universal-cookie';
 
 interface SignUpProps {
     showAdditionalSign: boolean;
@@ -15,6 +16,8 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const cookies = new Cookies();
+    const [authenticated, setAuthenticated] = useState(false);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -59,7 +62,10 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
             console.log(data);
 
             if (data.message === "Account created successfuly") {
-                window.location.href = '/sub';
+                cookies.set('authToken', data.id, { path: '/' });
+                // cookies.set('authToken', '86d8d7ea-93ec-4628-81a8-2bd59ddcb3d', { path: '/' });
+                setAuthenticated(true);
+                window.location.href = '/';
             }
         } catch (error) {
             console.error('Error:', error);

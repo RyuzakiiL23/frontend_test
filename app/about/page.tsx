@@ -1,12 +1,25 @@
+'use client'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import LHeader from '@/components/LHeader';
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Cookies from 'universal-cookie';
 
 export default function About() {
+  const cookies = new Cookies();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = cookies.get('authToken');
+    if (token) {
+        setAuthenticated(true);
+    }
+  }, []);
   return (
+
     <main className=" mocha text-text bg-surface0">
-      <Header />
+      {authenticated ? <LHeader /> : <Header/>}
       <div className='mocha flex flex-wrap relative w-[90%] m-auto'>
         <div className='flex flex-col mt-20 mb-10 w-full'>
           <h1 className='text-center font-bold text-4xl md:text-6xl mb-10'>About Us</h1>

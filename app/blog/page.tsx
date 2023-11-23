@@ -1,14 +1,28 @@
+'use client'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import React from 'react'
+import LHeader from '@/components/LHeader';
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+import Cookies from 'universal-cookie';
 
 export default function Blog() {
+  const cookies = new Cookies();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = cookies.get('authToken');
+    if (token) {
+        setAuthenticated(true);
+    }
+  }, []);
   return (
+
     <main className=" mocha text-text bg-surface0">
-      <Header />
+      {authenticated ? <LHeader /> : <Header/>}
       <div className='mocha flex flex-wrap relative w-[90%] m-auto'>
         <div className='flex flex-col mt-20 mb-10 w-full'>
-          <h1 className='text-center font-bold text-4xl md:text-6xl mb-10'>Blog Page</h1>
+          <h1 className='text-center font-bold text-4xl md:text-6xl mb-10'>About Us</h1>
           <p className='text-center'>
             Welcome to House Of Wisdom where knowledge finds its home and learning becomes a collaborative journey. At House Of Wisdom, we believe in the power of education to transform lives, and our Portfolio Project is dedicated to facilitating meaningful connections between students seeking academic support and teachers eager to share their expertise.
           </p>

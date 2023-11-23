@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import SignUp from './SignUp';
+import Cookies from 'universal-cookie';
 
 interface LoggedInProps {
   showAdditionalContent: boolean;
@@ -10,6 +11,18 @@ interface LoggedInProps {
 
 const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditionalContent }) => {
   const popupRef = useRef<HTMLDivElement>(null);
+
+  const cookies = new Cookies();
+  const [authenticated, setAuthenticated] = useState(false);
+
+
+
+  const handleLogout = () => {
+    // Remove the authentication token from the cookie
+    cookies.remove('authToken', { path: '/' });
+    setAuthenticated(false);
+    window.location.href = '/';
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -36,7 +49,7 @@ const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditi
         <li onClick={() => window.location.href = '/myprofil'} className='cursor-pointer'>My profil</li>
         <li onClick={() => window.location.href = '/fav'} className='cursor-pointer'>Favorite</li>
         <li onClick={() => window.location.href = '/parm'} className='cursor-pointer'>Setting</li>
-        <li className='cursor-pointer'>LogOut</li>
+        <li onClick={handleLogout} className='cursor-pointer'>LogOut</li>
       </ul>
       {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
     </div>
