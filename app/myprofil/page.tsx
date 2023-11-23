@@ -37,7 +37,7 @@ export default function page() {
             };
               console.log(userData)
 
-            const response = await fetch('http://15.188.65.41/api/v1/teachers', {
+            const response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default function page() {
   useEffect(() => {
     const fetchDataFunction = async () => {
       try {
-        const res = await fetch(`http://15.188.65.41/api/v1/users/${token}`);
+        const res = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`);
         const jsonRes = await res.json();
         setData(jsonRes);
 

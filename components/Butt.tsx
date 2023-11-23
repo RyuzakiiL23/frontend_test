@@ -13,7 +13,7 @@ function Butt() {
         passwd: password
       };
 
-      const response = await fetch('http://15.188.65.41/api/user', {
+      const response = await fetch('https://api.ryu23.tech/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

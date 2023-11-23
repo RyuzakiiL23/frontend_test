@@ -50,7 +50,7 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
                 confirm_password: password,
             };
 
-            const response = await fetch('http://15.188.65.41/api/v1/sign_up', {
+            const response = await fetch('https://api.ryu23.tech/api/v1/sign_up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

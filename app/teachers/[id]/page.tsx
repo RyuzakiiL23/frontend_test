@@ -9,7 +9,7 @@ import Login from "@/components/Login";
 
 
 async function getTeacher(id: string) {
-  const res = await fetch(`http://15.188.65.41/api/v1/teachers/${id}`);
+  const res = await fetch(`https://api.ryu23.tech/api/v1/teachers/${id}`);
   const data = await res.json();
 
   if (data.error === "Not found") {
