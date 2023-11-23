@@ -21,7 +21,7 @@ export default function Teachers() {
   useEffect(() => {
     const fetchDataFunction = async () => {
       try {
-        const res = await fetch('http://15.188.65.41/api/v1/teachers');
+        const res = await fetch('https://api.ryu23.tech/api/v1/teachers');
         const jsonRes = await res.json();
         setData(jsonRes);
 
