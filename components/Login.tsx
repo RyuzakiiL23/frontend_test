@@ -42,7 +42,7 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
                 password: password,
             };
 
-            const response = await fetch('httpss://api.ryu23.tech/api/v1/login', {
+            const response = await fetch('https://api.ryu23.tech/api/v1/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
