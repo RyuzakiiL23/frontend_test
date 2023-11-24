@@ -19,26 +19,26 @@ function Corp() {
           <div className='text-text mb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laboriosam  voluptates sed beatae?</div>
           <button onClick={handleSignUp} className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Start learning</button>
         </div>
-        <div className=' relative flex h-fil w-2/3 items ml-20'>
-          <Image
+        <div className=' bg-1 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20'>
+          {/* <Image
             alt='image'
             src='/1.png'
             layout='fill'
             objectFit='contain'
-          />
+          /> */}
         </div>
       </div>
 
 
       <div id='course' className='flex space-x-1 w-full h-96 mb-28'>
-        <div className=' relative flex h-fil w-2/3 items ml-20 '>
-          <Image
+        <div className=' bg-2 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20 '>
+          {/* <Image
             alt='image'
             src='/2.png'
             layout='fill'
             objectFit='contain'
             objectPosition='left'
-          />
+          /> */}
         </div>
         <div className=' w-1/2 ml-20 mt-20 '>
           <div className='text-2xl font-extrabold text-overlay0 mb-5'>Start learning with us now</div>
@@ -54,13 +54,13 @@ function Corp() {
         <div className=' w-1/2 ml-20 mt-20 '>
           <div className='text-2xl font-extrabold text-overlay0 mb-5 mt-10'>Start learning by creating free account and get register</div>
         </div>
-        <div className=' relative flex h-fil w-2/3 items ml-20 '>
-          <Image
+        <div className=' bg-14 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20 '>
+          {/* <Image
             alt='image'
             src='/33.png'
             layout='fill'
             objectFit='contain'
-          />
+          /> */}
         </div>
       </div>
 

@@ -21,7 +21,7 @@ const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditi
     // Remove the authentication token from the cookie
     cookies.remove('authToken', { path: '/' });
     setAuthenticated(false);
-    window.location.href = '/';
+    window.location.reload();
   };
 
   useEffect(() => {

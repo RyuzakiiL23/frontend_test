@@ -20,18 +20,13 @@ const Header = () => {
     };
 
     return (
-        <header className='mocha z-50 sticky top-0 flex justify-between bg-base h-20 items-center px-2 shadow-md'>
+        <header className='mocha z-50 sticky top-0 flex justify-between bg-base h-20 items-center  px-2 shadow-md'>
             <Link className='flex cursor-pointer w-20' href="/">
-                <div className=' relative flex h-5 w-5 cursor-pointer items'>
-                    <Image
-                        alt='image'
-                        src='/graduate.png'
-                        layout='fill'
-                        objectFit='contain'
-                        objectPosition='left'
-                    />
-                </div>
-                <div className=' text-mauve ml-1'><h1>KLS</h1></div>
+            <div className='flex cursor-pointer w-30 justify-center '>
+            <div className='ml-10 bg-logo bg-contain bg-no-repeat relative flex h-8 w-8 cursor-pointer'>
+            </div>
+                <div className='bg-how bg-contain bg-no-repeat relative flex h-8 w-32 cursor-pointer'></div>
+            </div>
             </Link>
             <ul className='flex text-lavender space-x-auto place-content-center gap-x-4'>
                 <Link href="/">
@@ -49,7 +44,7 @@ const Header = () => {
                     <li className='cursor-pointer'>Teachers</li>
                 </Link>
             </ul>
-            <div id='aligne_btn' className='flex text-base'>
+            <div id='aligne_btn' className='mr-10 flex text-base'>
                 <button onClick={handleSignUp} className='text-sapphire mr-3'>Sign Up</button>
                 <button onClick={handleClick} className=' text-left rounded-lg bg-mauve px-2'>Log in</button>
             </div>

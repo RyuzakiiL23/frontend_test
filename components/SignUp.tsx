@@ -65,7 +65,7 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
                 cookies.set('authToken', data.id, { path: '/' });
                 // cookies.set('authToken', '86d8d7ea-93ec-4628-81a8-2bd59ddcb3d', { path: '/' });
                 setAuthenticated(true);
-                window.location.href = '/';
+                window.location.reload();
             }
         } catch (error) {
             console.error('Error:', error);

@@ -71,7 +71,7 @@ const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditional
             const data = await response.json();
             console.log(data);
 
-            window.location.href = '/';
+            window.location.reload();
 
 
         } catch (error) {

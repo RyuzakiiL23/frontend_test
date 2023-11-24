@@ -23,7 +23,12 @@ const config: Config = {
         '12': "url('/12.png')",
         '13': "url('/13.webp')",
         '14': "url('/33.png')",
-        'logo': "url'/graduate.png'",
+        'logo': "url('/Vector.png')",
+        'insta': "url('/bxl_instagram.png')",
+        'facebook': "url('/circum_facebook.png')",
+        'linkedin': "url('/et_linkedin.png')",
+        'twitter': "url('/et_twitter.png')",
+        'how': "url('/House Of Wisdom.png')",
         'heropattern': "url('/4.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
