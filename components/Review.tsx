@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
-// import Login from './Login';
 
 interface ReviewProps {
     showAdditionalReview: boolean;
@@ -12,7 +11,7 @@ interface ReviewProps {
 interface ReviewProps {
   showAdditionalReview: boolean;
   setShowAdditionalReview: React.Dispatch<React.SetStateAction<boolean>>;
-  teacher_Id: string; // Add the teacher_Id property
+  teacher_Id: string;
 }
 
 const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditionalReview, teacher_Id }) => {
@@ -23,6 +22,15 @@ const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditional
     const [authenticated, setAuthenticated] = useState(false);
     const [user_id, setUser_id] = useState('');
     const [selectedText, setSelectedText] = useState('');
+    const [schema, setSchema] = useState('')
+
+    useEffect(() => {
+      if (selectedText === '') {
+        setSchema('bg-text cursor-default');
+      } else {
+        setSchema('bg-maroon cursor-pointer');
+      }
+    }, [selectedText]);
 
     const handleSelectText = (event: { target: { value: React.SetStateAction<string>; }; }) => {
       setSelectedText(event.target.value);
@@ -50,38 +58,38 @@ const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditional
   }, []);
 
 
-    const handleReview = async () => {
-        try {
-            const userData = {
-                user_id: user_id,
-                stars: 5,
-                text: selectedText,
-
-            };
-            console.log(userData)
-
-            const response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacher_Id}/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-            });
-
-            const data = await response.json();
-            console.log(data);
-
-            window.location.reload();
-
-
-        } catch (error) {
-            setErr(String(error))
-            console.error('Error:', error);
-        }
-    };
+  const handleReview = async () => {
+    if (schema === 'bg-maroon cursor-pointer') {
+      try {
+        const userData = {
+          user_id: user_id,
+          stars: 5,
+          text: selectedText,
+        };
+        console.log(userData);
+  
+        const response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacher_Id}/reviews`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        });
+  
+        const data = await response.json();
+        console.log(data);
+  
+        window.location.reload();
+      } catch (error) {
+        setErr(String(error));
+        console.error('Error:', error);
+      }
+    } else {
+      console.log('Schema is not bg-maroon cursor-pointer');
+    }
+  };
+  
   return (
-  // <>
-  //   {authenticated ? (
       <div ref={popupRef} className='z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[400px] w-[500px] bg-base'>
         <h1 className='text-text font-bold text-center'>Add Review</h1>
         <p className='text-center'>⭐⭐⭐⭐⭐</p>
@@ -91,14 +99,10 @@ const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditional
           </div>
         </div>
         <div className='flex mt-5 justify-end gap-6 mr-10'>
-          <button className='text-maroon bg-white font-medium bold-lg rounded w-20 h-10'>Cancel</button>
-          <button onClick={handleReview} className='text-white bg-maroon bold-lg font-medium rounded w-20 h-10'>Post</button>
+          <button onClick={() => setShowAdditionalReview(false)} className='text-maroon bg-white font-medium bold-lg rounded w-20 h-10'>Cancel</button>
+          <button onClick={ handleReview } className={`text-white  ${schema} bold-lg font-medium rounded w-20 h-10`}>Post</button>
         </div>
       </div>
-  //   ) : ( {setAuthenticated} &&
-  //     <Login showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />
-  //   )}
-  // </>
 )
 };
 

@@ -18,13 +18,26 @@ async function getTeacher(id: string) {
   return data;
 };
 
+async function getReview(id: string) {
+  const res = await fetch(`https://api.ryu23.tech/api/v1/teachers/${id}/reviews`);
+  const dataRev = await res.json();
+
+  if (dataRev.error === "Not found") {
+    throw new Error("Not found");
+  }
+
+  return dataRev;
+};
+
 export default function Page({ params }: { params: { id: string } }) {
   const [teacher, setTeacher] = useState({ user_name: '', teacher_id: '', description: '', course_name: '' });
+  const [review, setReview] = useState([]);
   const [error, setError] = useState(null);
   const cookies = new Cookies();
   const [authenticated, setAuthenticated] = useState(false);
   const [showAdditionalContent, setShowAdditionalContent] = useState(false);
   const [showAdditionalReview, setShowAdditionalReview] = useState(false);
+  const [count, setCount] = useState(0);
     
   const handleReview = () => {
     if (authenticated) {
@@ -54,6 +67,22 @@ export default function Page({ params }: { params: { id: string } }) {
     fetchTeacher();
   }, []);
 
+  useEffect(() => {
+    const fetchReview = async () => {
+      try {
+        const dataRev = await getReview(params.id);
+        setReview(dataRev);
+      } catch (error: any) {
+        setError(error.message);
+      }
+    };
+    fetchReview();
+  }, []);
+
+  useEffect(() => {
+    setCount(review.length);
+  }, [review]);
+
   if (error) {
     return <div>404 Not Found</div>;
   }
@@ -65,24 +94,14 @@ export default function Page({ params }: { params: { id: string } }) {
         <div className='w-2/3'>
           <div className='text-lavender text-2xl font-bold mt-10 mb-10'>About "{teacher.user_name}".</div>
           <div>{teacher.description}.</div>
-          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>Reviews</div>
+          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>Reviews: {count}</div>
+          {review.map((item: any): any => (
             <div className='flex w-full relative m-auto gap-8 border p-5 mb-10'>
-              <div className='w-20 h-20 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
-              <div className='w-2/3'>for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line. for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line.</div>
-              <div className='w-20 '>stars</div>
+              <div className='w-10 h-10 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
+              <div className='w-2/3'>{item.text}.</div>
+              <div className='w-20 '>{item.stars} ⭐</div>
             </div>
-
-            <div className='flex w-full relative m-auto gap-8 border p-5 mb-10'>
-              <div className='w-20 h-20 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
-              <div className='w-2/3'>for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line. for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line.</div>
-              <div className='w-20 '>stars</div>
-            </div>
-
-            <div className='flex w-full relative m-auto gap-8 border p-5 mb-10'>
-              <div className='w-20 h-20 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
-              <div className='w-2/3'>for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line. for example if I create a rectongle and I past a one line long text it should not get written out of that rectangle it should go to the next time everytime it reached the end of the line.</div>
-              <div className='w-20 '>stars</div>
-            </div>
+              ))}
             <div className='flex justify-end  mt-10 mb-20'>
               <button onClick={handleReview} className=' bg-green text-base bold-lg rounded w-40 h-10'>Add a review</button>
             </div>

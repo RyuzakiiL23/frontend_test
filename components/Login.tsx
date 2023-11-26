@@ -14,7 +14,8 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
     const [showAdditionalSign, setShowAdditionalSign] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [err, setErr] = useState('');
+    const [errEmail, setErrEmail] = useState('');
+    const [errPasswd, setErrPasswd] = useState('');
     const cookies = new Cookies();
     const [authenticated, setAuthenticated] = useState(false);
 
@@ -36,6 +37,8 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
     };
 
     const handleSubmit = async () => {
+        setErrEmail('')
+        setErrPasswd('')
         try {
             const userData = {
                 email: email,
@@ -53,15 +56,19 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
             const data = await response.json();
             console.log(data);
 
-            //id from backend needed
             if (data.message === 'success') {
                 cookies.set('authToken', data.id, { path: '/' });
-                // cookies.set('authToken', '86d8d7ea-93ec-4628-81a8-2bd59ddcb3d', { path: '/' });
                 setAuthenticated(true);
                 window.location.reload();
             }
-        } catch (error) {
-            setErr(String(error))
+            if (data.message === 'email not found') {
+                setErrEmail(data.message)
+            }
+            if (data.message === 'password not correct') {
+                setErrPasswd(data.message)
+            }
+        } catch (error: any) {
+            setErrEmail(String(error))
             console.error('Error:', error);
         }
     };
@@ -84,6 +91,8 @@ const Login: React.FC<LoginProps> = ({ showAdditionalContent, setShowAdditionalC
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className='text-red'>{errEmail}</div>
+                <div className='text-red'>{errPasswd}</div>
                 <button type='button' onClick={handleSubmit} className='border bg-green text-base rounded px-2 mb-2'>
                     Submit
                 </button>

@@ -16,6 +16,8 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const [errEmail, setErrEmail] = useState('');
+    const [errEmailConfirmation, setErrEmailConfirmation] = useState('');
     const cookies = new Cookies();
     const [authenticated, setAuthenticated] = useState(false);
 
@@ -37,8 +39,10 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
     };
 
     const handleSubmit = async () => {
+        setErrEmail('')
+        setErrEmailConfirmation('')
         if (password !== password2) {
-            alert(`Password confirmation doesn't match`);
+            setErrEmailConfirmation(`Passwords don't match`);
             return;
         }
         
@@ -63,9 +67,22 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
 
             if (data.message === "Account created successfuly") {
                 cookies.set('authToken', data.id, { path: '/' });
-                // cookies.set('authToken', '86d8d7ea-93ec-4628-81a8-2bd59ddcb3d', { path: '/' });
                 setAuthenticated(true);
                 window.location.reload();
+            }
+            if (data.message === 'Validation failed') {
+                if (data.errors.email) {
+                    setErrEmail(data.errors.email)
+                }
+                if (data.errors.username) {
+                    setErrEmail(data.errors.username)
+                }
+                if (data.errors.password) {
+                    setErrEmail(data.errors.password)
+                }
+            }
+            if (data.message === 'That email is taken. Please choose a different one.') {
+                setErrEmail('This email already exists')
             }
         } catch (error) {
             console.error('Error:', error);
@@ -80,6 +97,7 @@ const SignUp: React.FC<SignUpProps> = ({ showAdditionalSign, setShowAdditionalSi
                 <input className='flex rounded justify-center w-2/3 h-8 px-2 text-base font-medium mb-2' type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
                 <input className='flex rounded justify-center w-2/3 h-8 px-2 text-base font-medium mb-2' type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)}/>
                 <input className='flex rounded justify-center w-2/3 h-8 px-2 text-base font-medium mb-2' type='password' placeholder='Verify Password' onChange={(e) => setPassword2(e.target.value)}/>
+                <div className='text-red'>{errEmailConfirmation} {errEmail}</div>
                 <button onClick={handleSubmit} className='border bg-green text-base rounded px-2 mb-2'>Submit</button>
                 <div className='flex flex-col items-center'>
                     <h1 className='text-text text-xs'>Have an account?</h1>

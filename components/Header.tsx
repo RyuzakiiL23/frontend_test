@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Login from './Login';
 import SignUp from './SignUp';
 
@@ -30,23 +29,23 @@ const Header = () => {
             </Link>
             <ul className='flex text-lavender space-x-auto place-content-center gap-x-4'>
                 <Link href="/">
-                    <li className='cursor-pointer'>Home</li>
+                    <li className='cursor-pointer hover:text-mauve'>Home</li>
                 </Link>
                 {showAdditionalContent && <Login showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />}
                 {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
                 <Link href="/about">
-                    <li className='cursor-pointer'>About</li>
+                    <li className='cursor-pointer hover:text-mauve'>About</li>
                 </Link>
                 <Link href="/blog">
-                    <li className='cursor-pointer'>Blog</li>
+                    <li className='cursor-pointer hover:text-mauve'>Blog</li>
                 </Link>
                 <Link href="/teachers">
-                    <li className='cursor-pointer'>Teachers</li>
+                    <li className='cursor-pointer hover:text-mauve'>Teachers</li>
                 </Link>
             </ul>
             <div id='aligne_btn' className='mr-10 flex text-base'>
-                <button onClick={handleSignUp} className='text-sapphire mr-3'>Sign Up</button>
-                <button onClick={handleClick} className=' text-left rounded-lg bg-mauve px-2'>Log in</button>
+                <button onClick={handleSignUp} className='text-sapphire mr-3 hover:text-mauve'>Sign Up</button>
+                <button onClick={handleClick} className=' text-left rounded-lg bg-mauve px-2 hover:bg-pink'>Log in</button>
             </div>
         </header>
     );

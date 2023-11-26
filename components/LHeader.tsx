@@ -1,16 +1,33 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Logedin from './Logedin';
+import Cookies from 'universal-cookie';
 
 const LHeader = () => {
     const [showAdditionalContent, setShowAdditionalContent] = useState(false);
-
+    const cookies = new Cookies();
+    const token = cookies.get('authToken');
+    const [data, setData] = useState('')
     const handleClick = () => {
         setShowAdditionalContent(!showAdditionalContent);
     };
+
+    useEffect(() => {
+    const fetchDataFunction = async () => {
+      try {
+        const res = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`);
+        const jsonRes = await res.json();
+        setData(jsonRes.user_name);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchDataFunction();
+  }, []);
 
     return (
         <header className='mocha z-50 sticky top-0 flex justify-between bg-base h-20 items-center px-2 shadow-md'>
@@ -23,23 +40,23 @@ const LHeader = () => {
             </Link>
             <ul className='flex text-lavender space-x-auto place-content-center gap-x-4'>
                 <Link href="/">
-                    <li className='cursor-pointer'>Home</li>
+                    <li className='cursor-pointer hover:text-mauve'>Home</li>
                 </Link>
                 
                 <Link href="/about">
-                    <li className='cursor-pointer'>About</li>
+                    <li className='cursor-pointer hover:text-mauve'>About</li>
                 </Link>
                 <Link href="/blog">
-                    <li className='cursor-pointer'>Blog</li>
+                    <li className='cursor-pointer hover:text-mauve'>Blog</li>
                 </Link>
                 {showAdditionalContent && <Logedin showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />}
                 <Link href="/teachers">
-                    <li className='cursor-pointer'>Teachers</li>
+                    <li className='cursor-pointer hover:text-mauve'>Teachers</li>
                 </Link>
             </ul>
-            <div id='aligne_btn' className='mr-10 flex space-x-2 items-center  text-base rounded-lg bg-mauve px-2'>
-                <div className='bg-catkout h-5 w-5 bg-contain rounded-full'></div>
-                <button onClick={handleClick} className=' text-left '>variable</button>
+            <div id='aligne_btn' className='mr-10 flex space-x-2 items-center  text-base rounded-lg bg-mauve hover:bg-pink px-2'>
+                <div className='bg-catkout h-5 w-5 bg-contain rounded-full '></div>
+                <button onClick={handleClick} className=' text-left'>{data}</button>
             </div>
         </header>
     );

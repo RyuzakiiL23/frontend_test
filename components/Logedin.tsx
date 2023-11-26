@@ -18,7 +18,6 @@ const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditi
 
 
   const handleLogout = () => {
-    // Remove the authentication token from the cookie
     cookies.remove('authToken', { path: '/' });
     setAuthenticated(false);
     window.location.reload();
@@ -43,13 +42,13 @@ const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditi
     }
   };
 
-  return (
-    <div ref={popupRef} className='absolute top-[200px] right-0 transform -translate-x-1/2 -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[300px] w-[200px] bg-base'>
+  return ( 
+    <div ref={popupRef} className='absolute mt-10 top-[200px] right-[0px] transform -translate-x-[45px] -translate-y-1/2 mocha flex flex-col shadow-2xl place-content-around rounded-lg h-[300px] w-[200px] bg-base'>
       <ul className='flex flex-col relative w-[120px] m-auto place-center space-y-8'>
-        <li onClick={() => window.location.href = '/myprofil'} className='cursor-pointer'>My profil</li>
-        <li onClick={() => window.location.href = '/fav'} className='cursor-pointer'>Favorite</li>
-        <li onClick={() => window.location.href = '/parm'} className='cursor-pointer'>Setting</li>
-        <li onClick={handleLogout} className='cursor-pointer'>LogOut</li>
+        <li onClick={() => window.location.href = '/myprofil'} className='cursor-pointer hover:text-mauve'>My profil</li>
+        <li onClick={() => window.location.href = '/fav'} className='cursor-pointer hover:text-mauve'>Favorite</li>
+        <li onClick={() => window.location.href = '/parm'} className='cursor-pointer hover:text-mauve'>Setting</li>
+        <li onClick={handleLogout} className='cursor-pointer hover:text-mauve'>LogOut</li>
       </ul>
       {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
     </div>

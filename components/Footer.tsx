@@ -14,7 +14,7 @@ function Footer() {
         </div>
         </Link>
         <div className='cursor-pointer w-28'>
-          <div className='text-xs text-left pb-2'>Follow us</div>
+          <div className='text-lg text-peach text-left pb-2'>Follow us</div>
           <div className='flex justify-between gap-2 absolute center'>
             <div className=' bg-insta bg-contain bg-no-repeat relative flex h-10 w-10 cursor-pointer'>
             </div>
@@ -27,19 +27,19 @@ function Footer() {
           </div>
         </div>
         <div className='cursor-pointer w-28'>
-          <div className='text-xs text-left pb-2'>Useful Links</div>
+          <div className='text-lg text-peach text-left pb-2'>Useful Links</div>
           <div>
-            <ul className='text-left text-xs'>
+            <ul className='text-left text-xs text-mauve'>
               <li>Our Projects</li>
               <li>FAQ's</li>
               <li>News And Updates</li>
             </ul>
           </div>
         </div>
-        <div className='cursor-pointer w-28'>
-          <div className='text-xs text-left pb-2'>Contacts</div>
+        <div className='cursor-pointer w-48'>
+          <div className='text-lg text-peach text-left pb-2'>Contacts</div>
           <div>
-            <ul className='text-left text-xs'>
+            <ul className='text-left text-xs text-mauve'>
               <li>Address</li>
               <li>Email</li>
               <li>Phone Numbers</li>
