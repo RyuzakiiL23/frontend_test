@@ -69,6 +69,9 @@ export default function page() {
 
     const handleSubmit = async () => {
     try {
+
+        let response;
+        if (course) {
         const userData = {
             course_name: selectedValue,
             description: selectedText,
@@ -77,8 +80,6 @@ export default function page() {
         
         console.log(userData);
         
-        let response;
-        if (course) {
             response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
                 method: 'PUT',
                 headers: {
@@ -87,6 +88,12 @@ export default function page() {
                 body: JSON.stringify(userData),
             });
         } else {
+        const userData = {
+            course_name: selectedValue,
+            description: selectedText,
+        };
+        
+        console.log(userData);
             response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
                 method: 'POST',
                 headers: {
