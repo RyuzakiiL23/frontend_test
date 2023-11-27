@@ -75,7 +75,6 @@ export default function page() {
         const userData = {
             course_name: selectedValue,
             description: selectedText,
-            user_id: token,
         };
         
         console.log(userData);
@@ -91,6 +90,7 @@ export default function page() {
         const userData = {
             course_name: selectedValue,
             description: selectedText,
+            user_id: token,
         };
         
         console.log(userData);
