@@ -105,7 +105,7 @@ export default function page() {
 
         const data = await response.json();
         console.log(data.description);
-        window.location.href = '/teachers';
+        window.location.reload();
 
     } catch (error) {
         setErr(String(error));
