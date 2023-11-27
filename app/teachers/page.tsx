@@ -9,6 +9,15 @@ export default function Teachers() {
   const [data, setData] = useState([]);
   const cookies = new Cookies();
   const [authenticated, setAuthenticated] = useState(false);
+  const [etat, setEtat] = useState('')
+
+  useEffect(() => {
+    if (data.length == 0) {
+      setEtat('h-[367px]')
+    } else {
+      setEtat('')
+    }
+  })
 
   useEffect(() => {
     const token = cookies.get('authToken');
@@ -35,7 +44,7 @@ export default function Teachers() {
   return (
     <main className=" mocha bg-surface0">
       {authenticated ? <LHeader /> : <Header/>}
-      <div className='mocha flex flex-wrap relative w-[1060px] m-auto gap-4 place-items-center mt-20 mb-20'>
+      <div className={` ${etat} mocha flex flex-wrap relative w-[1060px] m-auto gap-4 place-items-center mt-20 mb-20`}>
         {data.map((item: any): any => (
           <div onClick={() => window.location.href = `/teachers/${item.id}`}  className='flex cursor-pointer flex-col relative w-[32%] h-[528px] border border-base rounded-3xl items-center bg-text shadow-2xl shadow-indigo-500/50'>
             <div className='w-[100%] h-2/3 border border-base border-y-0 border-t-0 rounded-3xl bg-catkout bg-contain bg-no-repeat bg-white shadow-sm shadow-indigo-500/50'></div>

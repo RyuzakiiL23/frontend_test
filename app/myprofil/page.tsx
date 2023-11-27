@@ -9,17 +9,57 @@ export default function page() {
   const cookies = new Cookies();
   const [authenticated, setAuthenticated] = useState(false);
 
-  const [data, setData] = useState({ user_name: '', email: '' })
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [cohort, setCohort] = useState('')
+  const [data, setData] = useState({ user_name: '', email: '', first_name: '', last_name: '', location: '' })
   const token = cookies.get('authToken')
   const [err, setErr] = useState('');
+  const [hide, setHide] = useState('flex flex-col relative ml-[-20000px] transition-all duration-1000 ease-in-out');
+  const [hideTeacher, setHideTeacher] = useState('transition-all duration-1000 ease-in-out');
+  const [selectedValue, setSelectedValue] = useState('');
+  const [info, setInfo] = useState(true);
+  const [aboutMe, setAboutMe] = useState('')
+  const [course, setCourse] = useState('')
+  const [teacherId, setTeacherId] = useState('')
 
-    // State to hold the selected value
-    const [selectedValue, setSelectedValue] = useState('');
-  
-    // Function to handle the change in dropdown selection
-    const handleSelectChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleInfo = () => {
+    if (info == true) {
+      setInfo(false);
+    } else {
+      setInfo(true);
+    }
+  }
+
+  const handleSelectChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
       setSelectedValue(event.target.value);
     };
+
+
+    const handleFirstNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    setLastName(event.target.value);
+  };
+
+  const handleCohortChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    setCohort(event.target.value);
+  };
+
+
+
+  const handleTeacher = () => {
+    // Toggle between classes based on the current state
+    if (hide === 'ml-[-20000px] transition-all duration-1000 ease-in-out') {
+      setHideTeacher('ml-[-2000px] transition-all duration-1000 ease-in-out')
+      setHide('transition-all duration-1000 ease-in-out'); // Switch back to default or initial state
+    } else {
+      setHideTeacher(' transition-all duration-1000 ease-in-out')
+      setHide('ml-[-20000px] transition-all duration-1000 ease-in-out'); // Apply the transition class
+    }
+  };
 
     const [selectedText, setSelectedText] = useState('');
   
@@ -27,36 +67,71 @@ export default function page() {
       setSelectedText(event.target.value);
     };
 
-
     const handleSubmit = async () => {
-        try {
-            const userData = {
-                course_name: selectedValue,
-                description: selectedText,
-                user_id: token,
-            };
-              console.log(userData)
-
-            const response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
+    try {
+        const userData = {
+            course_name: selectedValue,
+            description: selectedText,
+            user_id: token,
+        };
+        
+        console.log(userData);
+        
+        let response;
+        if (course) {
+            response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+        } else {
+            response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userData),
             });
-
-            const data = await response.json();
-            console.log(data);
-            window.location.href = '/teachers';
-
-            // //id from backend needed
-            // if (data.message === 'success') {
-            // }
-        } catch (error) {
-            setErr(String(error))
-            console.error('Error:', error);
         }
-    };
+
+        const data = await response.json();
+        console.log(data.description);
+        window.location.href = '/teachers';
+
+    } catch (error) {
+        setErr(String(error));
+        console.error('Error:', error);
+    }
+};
+
+
+
+    const handleSave = async () => {
+      try {
+          const userData = {
+              first_name: firstName,
+              last_name: lastName,
+              location: cohort,
+          };
+            console.log(userData)
+
+          const response = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(userData),
+          });
+
+          window.location.reload();
+
+      } catch (error) {
+          setErr(String(error))
+          console.error('Error:', error);
+      }
+  };
 
 
   useEffect(() => {
@@ -64,6 +139,32 @@ export default function page() {
     if (token) {
         setAuthenticated(true);
     }
+  }, []);
+
+    useEffect(() => {
+    const fetchDataFunction = async () => {
+      try {
+        const res = await fetch(`https://api.ryu23.tech/api/v1/teachers`);
+        const jsonRes = await res.json();
+        if (jsonRes.length == 0) {
+          console.log('teachers empty')
+        } else {
+          jsonRes.map((item: any) => {
+            if (item.user_id === token ) {
+          setAboutMe(item.description)
+          setCourse(item.course_name)
+          setTeacherId(item.id)
+        } else {
+          console.log('user missing')
+        }
+      })
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchDataFunction();
   }, []);
 
   useEffect(() => {
@@ -81,6 +182,17 @@ export default function page() {
     fetchDataFunction();
   }, []);
 
+  const handleDelete = async () => {
+  try {
+      const response = await fetch(`http://0.0.0.0:5000/api/v1/teachers/${teacherId}`, {
+          method: 'DELETE'
+      });
+        window.location.reload();
+  } catch (error) {
+      console.error('Error:', error);
+  }
+};
+
   return (
 
     <main className='mocha bg-surface0 '>
@@ -88,18 +200,74 @@ export default function page() {
     <div className='mocha overflow-hidden w-[1060px] m-auto text-text'>
       <div className='mocha flex relative gap-8  mt-20'>
         <div className='left=0 bg-catkout h-48 w-48 bg-contain bg-no-repeat rounded-full'></div>
-        <div className='flex flex-col border right-0 h-auto p-4 w-2/3'>
+        <div className='flex relative flex-col border right-0 h-auto p-4 w-2/3'>
           <p>UserName: {data.user_name}</p>
           <p>Email: {data.email}</p>
+          {data.first_name && info ? 
+            <p>First Name: {data.first_name}</p> :
+            <p>First Name: <input className='text-base border m-2 pr-2 pl-2' type="text" value={firstName} onChange={handleFirstNameChange} /></p>
+          }
+          {data.last_name && info ? 
+            <p>Last Name: {data.last_name}</p> :
+            <p>Last Name: <input className='text-base border m-2 pr-2 pl-2' type="text" value={lastName} onChange={handleLastNameChange} /></p>
+          }
+          {data.location && info ? 
+            <p>Cohort: {data.location}</p> :
+            <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
+          }
+          {(data.location || data.last_name || data.first_name) && info ?
+          <button onClick={handleInfo} className='mr-2 bg-yellow text-base bold-lg rounded w-20 h-10'>Modify</button> :
+          <div>
+          <button onClick={handleSave} className='mr-2 bg-green text-base bold-lg rounded w-20 h-10'>Submit</button>
+          <button onClick={handleInfo} className='mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Cancel</button>
+          </div>
+        }
         </div>
       </div>
+      
+      {course ? 
+      <div onClick={handleTeacher} className='mocha flex relative gap-8 mt-20 cursor-pointer'>
+        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+          <h1 className='bg-yellow text-base'> Modify Teacher Profil ▼ </h1>
+        </div>
+      </div> :
+      <div onClick={handleTeacher} className='mocha flex relative gap-8 mt-20 cursor-pointer'>
+        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+          <h1 className='bg-yellow text-base'> Set Teacher profile ▼ </h1>
+        </div>
+      </div> }
 
+
+      {course ? 
+      <div className={` ${hideTeacher}`}>
+        <div>
       <div className='mocha flex relative gap-8 mt-20'>
         <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
-          <h1 className=''> Set Teacher profile ▼ </h1>
+          <h1 className=''> Courses </h1>
+        </div>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
+          <div className='w-full h-full'></div>
+            <option>{course}</option>
         </div>
       </div>
+      <div className='mocha flex relative gap-8 mt-20'>
+        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+          <h1 className=''> About me </h1>
+        </div>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
+          <div className='w-full h-full'></div>
+            <option>{aboutMe}</option>
+        </div>
+          <button onClick={handleDelete} className='mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
+      </div>
+        </div>
+      </div> :
+      <div className={`absolute text-[100px] ${hideTeacher}`}>
+        <div>YOU ARE NOT A TEACHER</div>
+      </div> }
 
+
+      <div className={hide}>
       <div className='mocha flex relative gap-8 mt-20'>
         <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
           <h1 className=''> Courses </h1>
@@ -130,9 +298,10 @@ export default function page() {
         </div>
       </div>
 
-      <div className='flex justify-end mr-32 mt-10 gap-6 mb-20'>
-        <button className=' text-base bg-red bold-lg rounded w-20 h-10'>Delete</button>
+      <div className='flex ml-[800px] mt-10 gap-6 mb-20'>
+        <button onClick={handleTeacher} className=' text-base bg-red bold-lg rounded w-20 h-10'>Cancel</button>
         <button onClick={handleSubmit} className=' bg-green text-base bold-lg rounded w-20 h-10'>Save</button>
+      </div>
       </div>
 
     </div>

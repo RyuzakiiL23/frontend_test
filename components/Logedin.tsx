@@ -47,7 +47,6 @@ const Logedin: React.FC<LoggedInProps> = ({ showAdditionalContent, setShowAdditi
       <ul className='flex flex-col relative w-[120px] m-auto place-center space-y-8'>
         <li onClick={() => window.location.href = '/myprofil'} className='cursor-pointer hover:text-mauve'>My profil</li>
         <li onClick={() => window.location.href = '/fav'} className='cursor-pointer hover:text-mauve'>Favorite</li>
-        <li onClick={() => window.location.href = '/parm'} className='cursor-pointer hover:text-mauve'>Setting</li>
         <li onClick={handleLogout} className='cursor-pointer hover:text-mauve'>LogOut</li>
       </ul>
       {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
