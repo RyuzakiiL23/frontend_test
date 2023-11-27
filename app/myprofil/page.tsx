@@ -79,7 +79,7 @@ export default function page() {
         
         console.log(userData);
         
-            response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
+            response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacherId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
