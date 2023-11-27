@@ -184,7 +184,7 @@ export default function page() {
 
   const handleDelete = async () => {
   try {
-      const response = await fetch(`http://0.0.0.0:5000/api/v1/teachers/${teacherId}`, {
+      const response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacherId}`, {
           method: 'DELETE'
       });
         window.location.reload();
