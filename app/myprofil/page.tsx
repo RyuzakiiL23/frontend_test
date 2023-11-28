@@ -79,7 +79,7 @@ export default function page() {
         
         console.log(userData);
         
-            response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacherId}`, {
+            response = await fetch(`https://azure.ryu23.tech/api/v1/teachers/${teacherId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export default function page() {
         };
         
         console.log(userData);
-            response = await fetch('https://api.ryu23.tech/api/v1/teachers', {
+            response = await fetch('https://azure.ryu23.tech/api/v1/teachers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function page() {
           };
             console.log(userData)
 
-          const response = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`, {
+          const response = await fetch(`https://azure.ryu23.tech/api/v1/users/${token}`, {
               method: 'PUT',
               headers: {
                   'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ export default function page() {
     useEffect(() => {
     const fetchDataFunction = async () => {
       try {
-        const res = await fetch(`https://api.ryu23.tech/api/v1/teachers`);
+        const res = await fetch(`https://azure.ryu23.tech/api/v1/teachers`);
         const jsonRes = await res.json();
         if (jsonRes.length == 0) {
           console.log('teachers empty')
@@ -177,7 +177,7 @@ export default function page() {
   useEffect(() => {
     const fetchDataFunction = async () => {
       try {
-        const res = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`);
+        const res = await fetch(`https://azure.ryu23.tech/api/v1/users/${token}`);
         const jsonRes = await res.json();
         setData(jsonRes);
 
@@ -191,7 +191,7 @@ export default function page() {
 
   const handleDelete = async () => {
   try {
-      const response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacherId}`, {
+      const response = await fetch(`https://azure.ryu23.tech/api/v1/teachers/${teacherId}`, {
           method: 'DELETE'
       });
         window.location.reload();
@@ -246,27 +246,29 @@ export default function page() {
 
 
       {course ? 
-      <div className={` ${hideTeacher}`}>
+      <div className={`absolute ${hideTeacher}`}>
         <div>
       <div className='mocha flex relative gap-8 mt-20'>
         <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
           <h1 className=''> Courses </h1>
         </div>
         <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
-          <div className='w-full h-full'></div>
-            <option>{course}</option>
+          <div className='w-full h-full '></div>
+            <p className='text-text'>{course}</p>
         </div>
       </div>
       <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+        <div className='flex justify-center items-center left=0 w-44 border h-16'>
           <h1 className=''> About me </h1>
         </div>
-        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
-          <div className='w-full h-full'></div>
-            <option>{aboutMe}</option>
+        <div>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[700px]'>
+          <div className='h-full'></div>
+            <p className='text-text'>{aboutMe}</p>
         </div>
-          <button onClick={handleDelete} className='mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
+          <button onClick={handleDelete} className='ml-[800px] mt-10 gap-6 mb-20 mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
       </div>
+        </div>
         </div>
       </div> :
       <div className={`absolute text-[100px] ${hideTeacher}`}>
@@ -274,7 +276,7 @@ export default function page() {
       </div> }
 
 
-      <div className={hide}>
+      <div className={`${hide}`}>
       <div className='mocha flex relative gap-8 mt-20'>
         <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
           <h1 className=''> Courses </h1>

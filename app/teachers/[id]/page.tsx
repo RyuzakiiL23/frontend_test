@@ -8,7 +8,7 @@ import Review from "@/components/Review";
 import Login from "@/components/Login";
 
 async function getTeacher(id: string) {
-  const res = await fetch(`https://api.ryu23.tech/api/v1/teachers/${id}`);
+  const res = await fetch(`https://azure.ryu23.tech/api/v1/teachers/${id}`);
   const data = await res.json();
 
   if (data.error === "Not found") {
@@ -19,7 +19,7 @@ async function getTeacher(id: string) {
 };
 
 async function getReview(id: string) {
-  const res = await fetch(`https://api.ryu23.tech/api/v1/teachers/${id}/reviews`);
+  const res = await fetch(`https://azure.ryu23.tech/api/v1/teachers/${id}/reviews`);
   const dataRev = await res.json();
 
   if (dataRev.error === "Not found") {

@@ -12,7 +12,7 @@ function Page() {
         passwd: password
       };
 
-      const response = await fetch('https://api.ryu23.tech/api/user', {
+      const response = await fetch('https://azure.ryu23.tech/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

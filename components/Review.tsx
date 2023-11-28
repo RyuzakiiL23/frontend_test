@@ -68,7 +68,7 @@ const Review: React.FC<ReviewProps> = ({ showAdditionalReview, setShowAdditional
         };
         console.log(userData);
   
-        const response = await fetch(`https://api.ryu23.tech/api/v1/teachers/${teacher_Id}/reviews`, {
+        const response = await fetch(`https://azure.ryu23.tech/api/v1/teachers/${teacher_Id}/reviews`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

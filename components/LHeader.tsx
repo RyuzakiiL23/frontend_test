@@ -17,7 +17,7 @@ const LHeader = () => {
     useEffect(() => {
     const fetchDataFunction = async () => {
       try {
-        const res = await fetch(`https://api.ryu23.tech/api/v1/users/${token}`);
+        const res = await fetch(`https://azure.ryu23.tech/api/v1/users/${token}`);
         const jsonRes = await res.json();
         setData(jsonRes.user_name);
 
