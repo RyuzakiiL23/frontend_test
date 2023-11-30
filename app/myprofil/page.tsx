@@ -12,7 +12,7 @@ export default function page() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [cohort, setCohort] = useState('')
-  const [data, setData] = useState({ user_name: '', email: '', first_name: '', last_name: '', location: '' })
+  const [data, setData] = useState({ user_name: '', email: '', first_name: '', last_name: '', location: '', user_discord: '', user_wtsp: '' })
   const token = cookies.get('authToken')
   const [err, setErr] = useState('');
   const [hide, setHide] = useState('flex flex-col relative ml-[-20000px] transition-all duration-1000 ease-in-out');
@@ -22,6 +22,8 @@ export default function page() {
   const [aboutMe, setAboutMe] = useState('')
   const [course, setCourse] = useState('')
   const [teacherId, setTeacherId] = useState('')
+  const [discord, setDiscord] = useState('')
+  const [wtsp, setWtsp] = useState('')
 
   const handleInfo = () => {
     if (info == true) {
@@ -35,6 +37,13 @@ export default function page() {
       setSelectedValue(event.target.value);
     };
 
+  const handleDiscord = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+      setDiscord(event.target.value);
+    };
+
+  const handleWtsp = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+      setWtsp(event.target.value);
+    };
 
     const handleFirstNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setFirstName(event.target.value);
@@ -75,6 +84,8 @@ export default function page() {
         const userData = {
             course_name: selectedValue,
             description: selectedText,
+            user_discord: discord,
+            user_wtsp: wtsp,
         };
         
         console.log(userData);
@@ -90,6 +101,8 @@ export default function page() {
         const userData = {
             course_name: selectedValue,
             description: selectedText,
+            user_discord: discord,
+            user_wtsp: wtsp,
             user_id: token,
         };
         
@@ -121,6 +134,8 @@ export default function page() {
               first_name: firstName,
               last_name: lastName,
               location: cohort,
+              user_discord: discord,
+              user_wtsp: wtsp,
           };
             console.log(userData)
 
@@ -221,6 +236,14 @@ export default function page() {
           {data.location && info ? 
             <p>Cohort: {data.location}</p> :
             <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
+          }
+          {data.user_discord && info ? 
+            <p>Discord: {data.user_discord}</p> :
+            <p>Discord: <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={discord} onChange={handleDiscord} /></p>
+          }
+          {data.user_wtsp && info ? 
+            <p>Whatsapp: {data.user_wtsp}</p> :
+            <p>Whatsapp: <input className='text-base border m-2 pr-2 pl-2 ml-3' type="text" value={wtsp} onChange={handleWtsp} /></p>
           }
           {(data.location || data.last_name || data.first_name) && info ?
           <button onClick={handleInfo} className='mr-2 bg-yellow text-base bold-lg rounded w-20 h-10'>Modify</button> :

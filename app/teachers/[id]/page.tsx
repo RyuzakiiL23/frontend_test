@@ -30,7 +30,7 @@ async function getReview(id: string) {
 };
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [teacher, setTeacher] = useState({ user_name: '', teacher_id: '', description: '', course_name: '', first_name: '', last_name: ''});
+  const [teacher, setTeacher] = useState({ user_name: '', teacher_id: '', description: '', course_name: '', first_name: '', last_name: '', user_wtsp: '', user_discord: '', user_email: ''});
   const [review, setReview] = useState([]);
   const [error, setError] = useState(null);
   const cookies = new Cookies();
@@ -134,15 +134,15 @@ export default function Page({ params }: { params: { id: string } }) {
                 </div>
                 <div className="flex p-2 items-center h-1/5">
                   <div className="bg-email w-20 h-full bg-no-repeat bg-contain"></div>
-                  <p>ryu@kerzers.com</p>
+                  <p>{teacher.user_email}</p>
                 </div>
                 <div className="flex p-2 items-center h-1/5">
                   <div className="bg-discord w-20 h-full bg-no-repeat bg-contain"></div>
-                  <p>ryuzakii23#2712</p>
+                  <p>{teacher.user_discord}</p>
                 </div>
                 <div className="flex p-2 items-center h-1/5">
                   <div className="bg-whatsap w-20 h-full bg-no-repeat bg-contain"></div>
-                  <p>+212681234567</p>
+                  <p>{teacher.user_wtsp}</p>
                 </div>
               </div>
               <div className='flex flex-col relative w-[90%]'>
