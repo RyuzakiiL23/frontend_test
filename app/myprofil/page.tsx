@@ -258,7 +258,7 @@ export default function page() {
         </div>
       </div>
       <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-44 border h-16'>
+        <div className='flex justify-center items-center left=0 w-56 border h-16'>
           <h1 className=''> About me </h1>
         </div>
         <div>
@@ -276,7 +276,7 @@ export default function page() {
       </div> }
 
 
-      <div className={`${hide}`}>
+      <div className={`${hide} mb-40`}>
       <div className='mocha flex relative gap-8 mt-20'>
         <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
           <h1 className=''> Courses </h1>

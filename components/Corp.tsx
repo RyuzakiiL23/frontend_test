@@ -50,7 +50,7 @@ function Corp() {
         </div>
       </div>
 
-      <div id='registration' className='flex relative space-x-1 w-full h-96'>
+      <div id='registration' className='flex relative space-x-1 w-full h-96 mb-20'>
         <div className=' w-1/2 ml-20 mt-20 '>
           <div className='text-2xl font-extrabold text-overlay0 mb-5 mt-10'>Start learning by creating free account and get register</div>
         </div>
@@ -66,7 +66,7 @@ function Corp() {
 
 
 
-      <div id='subscribe' className='mb-20 flex relative items-center mr-20 ml-20 mt-20 h-20 bg-purple-300 text-overlay0'>
+      {/* <div id='subscribe' className='mb-20 flex relative items-center mr-20 ml-20 mt-20 h-20 bg-purple-300 text-overlay0'>
         <div className=' w-1/3 h-1/2 m-5 bg-overlay2 flex items-center justify-center '>Your name</div>
         <div className=' flex items-center justify-center w-1/3  h-1/2 bg-overlay2'>Email</div>
         <button className=' w-1/3 h-1/2 m-5 bg-yellow'>Subscribe</button>
@@ -78,7 +78,7 @@ function Corp() {
         <p >Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
         <button className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Join community on Discord</button>
       </div>
-      </div>
+      </div> */}
       {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
     </section>
   )

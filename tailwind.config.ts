@@ -30,6 +30,9 @@ const config: Config = {
         'twitter': "url('/et_twitter.png')",
         'how': "url('/House Of Wisdom.png')",
         'heropattern': "url('/4.png')",
+        'email': "url('/email.png')",
+        'whatsap': "url('/whatsap.png')",
+        'discord': "url('/discord.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

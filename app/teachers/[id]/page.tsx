@@ -30,7 +30,7 @@ async function getReview(id: string) {
 };
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [teacher, setTeacher] = useState({ user_name: '', teacher_id: '', description: '', course_name: '' });
+  const [teacher, setTeacher] = useState({ user_name: '', teacher_id: '', description: '', course_name: '', first_name: '', last_name: ''});
   const [review, setReview] = useState([]);
   const [error, setError] = useState(null);
   const cookies = new Cookies();
@@ -38,6 +38,11 @@ export default function Page({ params }: { params: { id: string } }) {
   const [showAdditionalContent, setShowAdditionalContent] = useState(false);
   const [showAdditionalReview, setShowAdditionalReview] = useState(false);
   const [count, setCount] = useState(0);
+  const [isRotated, setIsRotated] = useState(true);
+
+  const handleRotate = () => {
+    setIsRotated(!isRotated);
+  };
     
   const handleReview = () => {
     if (authenticated) {
@@ -90,7 +95,7 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <main className='mocha bg-surface0 '>
       {authenticated ? <LHeader /> : <Header/>}
-      <div className=' mocha flex relative gap-4 w-[1060px] m-auto text-text'>
+      <div className=' mt-20 mocha flex relative gap-4 w-[1060px] m-auto text-text'>
         <div className='w-2/3'>
           <div className='text-lavender text-2xl font-bold mt-10 mb-10'>About "{teacher.user_name}".</div>
           <div>{teacher.description}.</div>
@@ -108,15 +113,46 @@ export default function Page({ params }: { params: { id: string } }) {
             {showAdditionalReview && <Review showAdditionalReview={showAdditionalReview} setShowAdditionalReview={setShowAdditionalReview} teacher_Id={params.id} />}
             {showAdditionalContent && <Login showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />}
         </div>
-          <div className='sticky top-40 w-1/3 h-[647px]'>
-            <div className='flex flex-col relative h-[528px] bg-overlay2 shadow-2xl rounded-3xl items-center'>
+        {isRotated ? 
+          <div className={`sticky top-40 w-1/3 h-[647px]`}>
+            <div className={` flex flex-col relative h-[528px] bg-overlay2 shadow-2xl rounded-3xl items-center`}>
               <div className='w-[100%] h-2/3 rounded-t-3xl bg-catkout bg-contain bg-no-repeat bg-white shadow-sm'></div>
               <div className='flex flex-col relative w-[90%]'>
                 <div className='text-text text-start font-bold mt-4'>{teacher.user_name}</div>
                 <div className='text-text text-start font-bold mt-4'>Course: {teacher.course_name}</div>
+                <button onClick={handleRotate} className="bg-maroon text-base bold-lg rounded w-40 h-10 mt-5">Contact teacher</button>
+              </div>
+            </div>
+          </div> :
+
+          <div className={`sticky top-40 w-1/3 h-[647px]`}>
+            <div className={` flex flex-col relative h-[528px] bg-overlay2 shadow-2xl rounded-3xl items-center`}>
+              <div className=' text-[#221d3b] flex flex-col w-[100%] h-2/3 rounded-t-3xl bg-white shadow-sm'>
+                <div className="flex h-2/5 items-end p-2 border-b border-gray-200">
+                  <div className="h-full w-40 bg-catkout bg-no-repeat bg-contain"></div>
+                  <p className="text-[#221d3b] font-bold mb-4">{teacher.first_name} {teacher.last_name}</p>
+                </div>
+                <div className="flex p-2 items-center h-1/5">
+                  <div className="bg-email w-20 h-full bg-no-repeat bg-contain"></div>
+                  <p>ryu@kerzers.com</p>
+                </div>
+                <div className="flex p-2 items-center h-1/5">
+                  <div className="bg-discord w-20 h-full bg-no-repeat bg-contain"></div>
+                  <p>ryuzakii23#2712</p>
+                </div>
+                <div className="flex p-2 items-center h-1/5">
+                  <div className="bg-whatsap w-20 h-full bg-no-repeat bg-contain"></div>
+                  <p>+212681234567</p>
+                </div>
+              </div>
+              <div className='flex flex-col relative w-[90%]'>
+                <div className='text-text text-start font-bold mt-4'>{teacher.user_name}</div>
+                <div className='text-text text-start font-bold mt-4'>Course: {teacher.course_name}</div>
+                <button onClick={handleRotate} className="bg-maroon text-base bold-lg rounded w-40 h-10 mt-5">Teacher profil</button>
               </div>
             </div>
           </div>
+          }
       </div>
       <Footer/>
     </main>
