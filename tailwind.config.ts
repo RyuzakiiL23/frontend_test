@@ -31,6 +31,7 @@ const config: Config = {
         'how': "url('/House Of Wisdom.png')",
         'heropattern': "url('/4.png')",
         'email': "url('/email.png')",
+        '31': "url('/31.jpeg')",
         'whatsap': "url('/whatsap.png')",
         'discord': "url('/discord.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

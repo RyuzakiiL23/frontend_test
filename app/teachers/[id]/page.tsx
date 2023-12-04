@@ -41,7 +41,11 @@ export default function Page({ params }: { params: { id: string } }) {
   const [isRotated, setIsRotated] = useState(true);
 
   const handleRotate = () => {
-    setIsRotated(!isRotated);
+    if (authenticated) {
+      setIsRotated(!isRotated);
+    } else {
+      setShowAdditionalContent(!showAdditionalContent);
+    }
   };
     
   const handleReview = () => {

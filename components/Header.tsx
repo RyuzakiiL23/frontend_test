@@ -24,7 +24,7 @@ const Header = () => {
             <div className='flex cursor-pointer w-30 justify-center '>
             <div className='ml-10 bg-logo bg-contain bg-no-repeat relative flex h-8 w-8 cursor-pointer'>
             </div>
-                <div className='bg-how bg-contain bg-no-repeat relative flex h-8 w-32 cursor-pointer'></div>
+                <div className='md:bg-how md:bg-contain md:bg-no-repeat relative flex h-8 w-32 cursor-pointer '></div>
             </div>
             </Link>
             <ul className='flex text-lavender space-x-auto place-content-center gap-x-4'>

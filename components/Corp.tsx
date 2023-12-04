@@ -19,29 +19,16 @@ function Corp() {
           <div className='text-text mb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laboriosam  voluptates sed beatae?</div>
           <button onClick={handleSignUp} className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Start learning</button>
         </div>
-        <div className=' bg-1 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20'>
-          {/* <Image
-            alt='image'
-            src='/1.png'
-            layout='fill'
-            objectFit='contain'
-          /> */}
+        <div className='h-fil w-2/3 flex relative justify-center'>
+          <div className=' bg-1 bg-contain bg-no-repeat relative flex h-fil w-2/3'></div>
         </div>
       </div>
 
 
-      <div id='course' className='flex space-x-1 w-full h-96 mb-28'>
-        <div className=' bg-2 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20 '>
-          {/* <Image
-            alt='image'
-            src='/2.png'
-            layout='fill'
-            objectFit='contain'
-            objectPosition='left'
-          /> */}
-        </div>
-        <div className=' w-1/2 ml-20 mt-20 '>
-          <div className='text-2xl font-extrabold text-overlay0 mb-5'>Start learning with us now</div>
+      <div id='registration' className='md:flex md:flex-row flex flex-col items-center relative space-x-1 w-full h-auto md:h-96 mb-20'>
+        <div className=' bg-2 bg-contain bg-no-repeat relative flex h-60 w-2/3 md:h-96 md:w-2/3 items ml-20 '></div>
+        <div className=' w-1/2 md:ml-20 m-auto md:mt-20 '>
+          <div className='text-2xl font-extrabold text-overlay0 mb-5 mt-10'>Start learning with us now</div>
           <ul className='text-text'>
             <li>Start learning from your experience</li>
             <li>Enhance your skills with us now</li>
@@ -50,35 +37,15 @@ function Corp() {
         </div>
       </div>
 
-      <div id='registration' className='flex relative space-x-1 w-full h-96 mb-20'>
-        <div className=' w-1/2 ml-20 mt-20 '>
+      <div id='registration' className='md:flex md:flex-row flex flex-col items-center relative space-x-1 w-full h-auto md:h-96 mb-20'>
+        <div className=' w-1/2 md:ml-20 m-auto mt-20 '>
           <div className='text-2xl font-extrabold text-overlay0 mb-5 mt-10'>Start learning by creating free account and get register</div>
         </div>
-        <div className=' bg-14 bg-contain bg-no-repeat relative flex h-fil w-2/3 items ml-20 '>
-          {/* <Image
-            alt='image'
-            src='/33.png'
-            layout='fill'
-            objectFit='contain'
-          /> */}
+        <div className=' bg-14 bg-contain bg-no-repeat relative flex h-96 w-2/3 md:h-fil md:w-2/3 items ml-20 '>
+
         </div>
       </div>
 
-
-
-      {/* <div id='subscribe' className='mb-20 flex relative items-center mr-20 ml-20 mt-20 h-20 bg-purple-300 text-overlay0'>
-        <div className=' w-1/3 h-1/2 m-5 bg-overlay2 flex items-center justify-center '>Your name</div>
-        <div className=' flex items-center justify-center w-1/3  h-1/2 bg-overlay2'>Email</div>
-        <button className=' w-1/3 h-1/2 m-5 bg-yellow'>Subscribe</button>
-      </div>
-
-    <div  id='community' className=' bg-heropattern bg-no-repeat bg-contain flex relative h-80 max-md:w-[80%] transition-all w-1/2 mx-auto'>
-      <div className='flex flex-col w-[40%]'>
-        <h1 >Start growing with our communityhero-pattern</h1>
-        <p >Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-        <button className='rounded-lg px-4 py-1 bg-green text-surface0 font-bold '>Join community on Discord</button>
-      </div>
-      </div> */}
       {showAdditionalSign && <SignUp showAdditionalSign={showAdditionalSign} setShowAdditionalSign={setShowAdditionalSign} />}
     </section>
   )
