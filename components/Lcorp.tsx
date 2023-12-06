@@ -58,7 +58,9 @@ function Lcorp() {
           <div className='text-yellow-500 text-xl'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         </div>
         <div className='flex relative mt-10 md:mt-0 md:w-1/2 w-[80%] h-[60%] space-around gap-4 justify-center'>
-            {data.map((item: any) => (
+            {
+            
+            data.slice(0, 2).map((item: any) => (
               <div
                 onClick={() => window.location.href = `/teachers/${item.id}`}
                 className='flex cursor-pointer flex-col relative w-[47%] h-auto border border-base rounded-3xl items-center bg-text shadow-2xl shadow-indigo-500/50'
@@ -87,7 +89,6 @@ function Lcorp() {
       <section className=' mocha flex m-auto relative h-screen'>
           <div className='rounded-3xl  bg-9 bg-no-repeat m-auto w-[70%] h-[70%]'>
             <p className='text-[40px] text-purple-800 font-bold p-10'>Become a teacher !!</p>
-            {/* <p className='text-[20px] text-base font-semibold pl-10 mb-5 '>Share your knowledge will yourr peers through them jouney </p> */}
             <button onClick={() => window.location.href = '/myprofil'} className='rounded bg-green text-purple-800 font-semibold ml-10 p-2'>Create your teacher profil</button>
           </div>
       </section>

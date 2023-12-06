@@ -2,7 +2,7 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header';
 import LHeader from '@/components/LHeader'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Cookies from 'universal-cookie';
 
 export default function page() {
@@ -24,6 +24,12 @@ export default function page() {
   const [teacherId, setTeacherId] = useState('')
   const [discord, setDiscord] = useState('')
   const [wtsp, setWtsp] = useState('')
+
+  useEffect(() => {
+    if (!token) {
+      window.location.href = `/`;
+    }
+  }, []);
 
   const handleInfo = () => {
     if (info == true) {
@@ -63,10 +69,10 @@ export default function page() {
     // Toggle between classes based on the current state
     if (hide === 'ml-[-20000px] transition-all duration-1000 ease-in-out') {
       setHideTeacher('ml-[-2000px] transition-all duration-1000 ease-in-out')
-      setHide('transition-all duration-1000 ease-in-out'); // Switch back to default or initial state
+      setHide('transition-all duration-1000 ease-in-out'); 
     } else {
       setHideTeacher(' transition-all duration-1000 ease-in-out')
-      setHide('ml-[-20000px] transition-all duration-1000 ease-in-out'); // Apply the transition class
+      setHide('ml-[-20000px] transition-all duration-1000 ease-in-out'); 
     }
   };
 
@@ -227,23 +233,23 @@ export default function page() {
           <p>Email: {data.email}</p>
           {data.first_name && info ? 
             <p>First Name: {data.first_name}</p> :
-            <p>First Name: <input className='text-base border m-2 pr-2 pl-2' type="text" value={firstName} onChange={handleFirstNameChange} /></p>
+            <p>First Name: <input onFocus={() => setInfo(false)} className='text-base border m-2 pr-2 pl-2' type="text" value={data.first_name ? data.first_name : firstName} onChange={handleFirstNameChange} /></p>
           }
           {data.last_name && info ? 
             <p>Last Name: {data.last_name}</p> :
-            <p>Last Name: <input className='text-base border m-2 pr-2 pl-2' type="text" value={lastName} onChange={handleLastNameChange} /></p>
+            <p>Last Name: <input onFocus={() => setInfo(false)} className='text-base border m-2 pr-2 pl-2' type="text" value={data.last_name ? data.last_name : lastName} onChange={handleLastNameChange} /></p>
           }
           {data.location && info ? 
             <p>Cohort: {data.location}</p> :
-            <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
+            <p>Cohort : <input onFocus={() => setInfo(false)} className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={data.location ? data.location : cohort} onChange={handleCohortChange} /></p>
           }
           {data.user_discord && info ? 
             <p>Discord: {data.user_discord}</p> :
-            <p>Discord: <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={discord} onChange={handleDiscord} /></p>
+            <p>Discord: <input onFocus={() => setInfo(false)} className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={data.user_discord ? data.user_discord : discord} onChange={handleDiscord} /></p>
           }
           {data.user_wtsp && info ? 
             <p>Whatsapp: {data.user_wtsp}</p> :
-            <p>Whatsapp: <input className='text-base border m-2 pr-2 pl-2 ml-3' type="text" value={wtsp} onChange={handleWtsp} /></p>
+            <p>Whatsapp: <input onFocus={() => setInfo(false)} className='text-base border m-2 pr-2 pl-2 ml-3' type="text" value={data.user_wtsp ? data.user_wtsp : wtsp} onChange={handleWtsp} /></p>
           }
           {(data.location || data.last_name || data.first_name) && info ?
           <button onClick={handleInfo} className='mr-2 bg-yellow text-base bold-lg rounded w-20 h-10'>Modify</button> :
@@ -295,7 +301,7 @@ export default function page() {
         </div>
       </div> :
       <div className={`absolute text-[100px] ${hideTeacher}`}>
-        <div>YOU ARE NOT A TEACHER</div>
+        <div></div>
       </div> }
 
 

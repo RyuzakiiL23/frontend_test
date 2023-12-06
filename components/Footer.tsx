@@ -29,7 +29,7 @@ function Footer() {
         <div className='cursor-pointer w-28'>
           <div className='text-lg text-peach md:text-left text-center pb-2'>Useful Links</div>
           <div>
-            <ul className='md:text-left text-center text-xs text-mauve mb-5'>
+            <ul className='md:text-left text-center text-xs text-mauve'>
               <li>Our Projects</li>
               <li>FAQ's</li>
               <li>News And Updates</li>
