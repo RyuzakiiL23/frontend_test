@@ -46,10 +46,6 @@ function Lcorp() {
             <button onClick={() => window.location.href = '/teachers'} className='rounded bg-green text-maroon font-semibold ml-10 p-2'>Here</button>
           </div>
       </section>
-
-
-
-
       
       <section className=' text-center mocha md:flex md:flex-row sm:flex flex-col flex items-center relative h-screen'>
         <div className='md:w-1/2 w-[100%]'>
