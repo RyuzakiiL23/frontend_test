@@ -25,6 +25,12 @@ export default function page() {
   const [discord, setDiscord] = useState('')
   const [wtsp, setWtsp] = useState('')
 
+    useEffect(() => {
+    if (!token) {
+      window.location.href = `/`;
+    }
+  }, []);
+
   const handleInfo = () => {
     if (info == true) {
       setInfo(false);

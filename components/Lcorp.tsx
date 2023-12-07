@@ -36,7 +36,7 @@ function Lcorp() {
     <div className='w-[380px] sm:w-[600px] md:w-auto lg:w-[1060] m-auto '>
       <section className=' text-center mt-20 mocha md:flex md:flex-row sm:flex flex-col flex items-center relative h-auto'>
         <div className=' w-[100%]'>
-          <p className='text-lavender text-[50px] '>Stat learning right now!</p>
+          <p className='text-lavender text-[50px] '>Start learning right now!</p>
         </div>
       </section>
       <section className=' mt-10 mb-10 mocha flex m-auto relative h-[300px]'>
@@ -49,7 +49,7 @@ function Lcorp() {
       
       <section className=' text-center mocha md:flex md:flex-row sm:flex flex-col flex items-center relative h-screen'>
         <div className='md:w-1/2 w-[100%]'>
-          <p className='text-lavender text-[50px] '>Teachers of the mounth</p>
+          <p className='text-lavender text-[50px] '>Teachers of the month</p>
           <p className='text-text text-[24px]'>Teachers with the highest reviews rate</p>
           <div className='text-yellow-500 text-xl'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         </div>
