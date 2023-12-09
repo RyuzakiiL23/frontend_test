@@ -29,7 +29,7 @@ const config: Config = {
         'linkedin': "url('/et_linkedin.png')",
         'twitter': "url('/et_twitter.png')",
         'twitter2': "url('/twitter2.png')",
-        'how': "url('/House Of Wisdom.png')",
+        'how': "url('/HouseOf.png')",
         'heropattern': "url('/4.png')",
         'email': "url('/email.png')",
         '31': "url('/31.jpeg')",

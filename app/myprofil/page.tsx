@@ -225,10 +225,10 @@ export default function page() {
 
     <main className='mocha bg-surface0 '>
     {authenticated ? <LHeader /> : <Header/>}
-    <div className='mocha overflow-hidden w-[1060px] m-auto text-text'>
-      <div className='mocha flex relative gap-8  mt-20'>
+    <div className='mocha overflow-hidden lg:w-[1060px] m-auto text-text ml-10'>
+      <div className='mocha flex flex-col lg:flex-row  relative gap-8  mt-20'>
         <div className='left=0 bg-catkout h-48 w-48 bg-contain bg-no-repeat rounded-full'></div>
-        <div className='flex relative flex-col border right-0 h-auto p-4 w-2/3'>
+        <div className='flex relative flex-col border right-0 h-auto p-4 w-[350px]'>
           <p>UserName: {data.user_name}</p>
           <p>Email: {data.email}</p>
           {data.first_name && info ? 
@@ -241,15 +241,15 @@ export default function page() {
           }
           {data.location && info ? 
             <p>Cohort: {data.location}</p> :
-            <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
+            <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 lg:ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
           }
           {data.user_discord && info ? 
             <p>Discord: {data.user_discord}</p> :
-            <p>Discord: <input className='text-base border m-2 pr-2 pl-2 ml-8' type="text" value={discord} onChange={handleDiscord} /></p>
+            <p>Discord: <input className='text-base border m-2 pr-2 pl-2 lg:ml-8' type="text" value={discord} onChange={handleDiscord} /></p>
           }
           {data.user_wtsp && info ? 
             <p>Whatsapp: {data.user_wtsp}</p> :
-            <p>Whatsapp: <input className='text-base border m-2 pr-2 pl-2 ml-3' type="text" value={wtsp} onChange={handleWtsp} /></p>
+            <p>Whatsapp: <input className='text-base border m-2 pr-2 pl-2 lg:ml-3' type="text" value={wtsp} onChange={handleWtsp} /></p>
           }
           {(data.location || data.last_name || data.first_name) && info ?
           <button onClick={handleInfo} className='mr-2 bg-yellow text-base bold-lg rounded w-20 h-10'>Modify</button> :
@@ -263,12 +263,12 @@ export default function page() {
       
       {course ? 
       <div onClick={handleTeacher} className='mocha flex relative gap-8 mt-20 cursor-pointer'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+        <div className='flex justify-center items-center left=0 w-[200px] border h-16'>
           <h1 className='bg-yellow text-base'> Modify Teacher Profil ▼ </h1>
         </div>
       </div> :
       <div onClick={handleTeacher} className='mocha flex relative gap-8 mt-20 cursor-pointer'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+        <div className='flex justify-center items-center left=0 w-[200px] border h-16'>
           <h1 className='bg-yellow text-base'> Set Teacher profile ▼ </h1>
         </div>
       </div> }
@@ -277,25 +277,25 @@ export default function page() {
       {course ? 
       <div className={`absolute ${hideTeacher}`}>
         <div>
-      <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+      <div className='mocha flex flex-col lg:flex-row relative gap-8 mt-20'>
+        <div className='flex justify-center items-center left=0 w-[150px] border h-16'>
           <h1 className=''> Courses </h1>
         </div>
-        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[150px]'>
           <div className='w-full h-full '></div>
             <p className='text-text'>{course}</p>
         </div>
       </div>
-      <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-56 border h-16'>
+      <div className='mocha flex flex-col lg:flex-row relative gap-8 mt-20'>
+        <div className='flex justify-center items-center left=0 w-[150px] border h-16'>
           <h1 className=''> About me </h1>
         </div>
         <div>
-        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[700px]'>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[300px] sm:w-[600px] lg:w-[700px]'>
           <div className='h-full'></div>
-            <p className='text-text'>{aboutMe}</p>
+            <p className='text-text w-[80%]'>{aboutMe}</p>
         </div>
-          <button onClick={handleDelete} className='ml-[800px] mt-10 gap-6 mb-20 mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
+          <button onClick={handleDelete} className='lg:ml-[800px] sm:ml-[500px] ml-[200px] mt-10 gap-6 mb-20 mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
       </div>
         </div>
         </div>
@@ -306,11 +306,11 @@ export default function page() {
 
 
       <div className={`${hide} mb-40`}>
-      <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+      <div className='mocha flex flex-col lg:flex-row relative gap-8 mt-20'>
+        <div className='flex justify-center items-center left=0 w-[150px] border h-16'>
           <h1 className=''> Courses </h1>
         </div>
-        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-1/3'>
+        <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[150px]'>
           <select id="dropdown" value={selectedValue} onChange={handleSelectChange} className='w-full h-full'>
             <option value="">Select...</option>
             <option value="C">C</option>
@@ -327,8 +327,8 @@ export default function page() {
         </div>
       </div>
 
-      <div className='mocha flex relative gap-8 mt-20'>
-        <div className='flex justify-center items-center left=0 w-1/5 border h-16'>
+      <div className='mocha flex flex-col lg:flex-row relative gap-8 mt-20'>
+        <div className='flex justify-center items-center left=0 w-[150px] border h-16'>
           <h1 className=''> About Me </h1>
         </div>
         <div className='flex flex-col relative border right-0 h-48 p-4 w-2/3'>
@@ -336,7 +336,7 @@ export default function page() {
         </div>
       </div>
 
-      <div className='flex ml-[800px] mt-10 gap-6 mb-20'>
+      <div className='flex lg:ml-[800px] sm:ml-[400px] ml-[200px] mt-10 gap-6 mb-20'>
         <button onClick={handleTeacher} className=' text-base bg-red bold-lg rounded w-20 h-10'>Cancel</button>
         <button onClick={handleSubmit} className=' bg-green text-base bold-lg rounded w-20 h-10'>Save</button>
       </div>

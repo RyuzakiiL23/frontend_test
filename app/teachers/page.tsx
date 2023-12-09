@@ -67,7 +67,7 @@ export default function Teachers() {
   return (
     <main className="mocha bg-surface0">
       {authenticated ? <LHeader /> : <Header />}
-      <div className='mocha flex flex-wrap relative w-[1060px] m-auto gap-4 place-items-center mt-20 mb-20'>
+      <div className='mocha flex flex-wrap relative w-max lg:w-[1060px] m-auto gap-2 place-items-center mt-20 mb-20'>
         <div className='mocha flex relative'>
           <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-full'>
             <select
@@ -91,11 +91,11 @@ export default function Teachers() {
           </div>
         </div>
       </div>
-      <div className={` ${etat} mocha flex flex-wrap relative w-[1060px] m-auto gap-4 place-items-center mt-20 mb-20`}>
+      <div className={` ${etat} mocha flex flex-wrap relative w-screen lg:w-[1060px] m-auto gap-2 place-items-center justify-center mt-20 mb-20`}>
         {data.map((item: any) => (
           <div
             onClick={() => window.location.href = `/teachers/${item.id}`}
-            className='flex cursor-pointer flex-col relative w-[32%] h-[528px] border border-base rounded-3xl items-center bg-text shadow-2xl shadow-indigo-500/50'
+            className='flex cursor-pointer flex-col relative w-[70%] sm:w-[44%] md:w-[32%] h-[528px] border border-base rounded-3xl items-center bg-text shadow-2xl shadow-indigo-500/50'
             key={item.id}
           >
             <div className='w-[100%] h-2/3 border border-base border-y-0 border-t-0 rounded-3xl bg-catkout bg-contain bg-no-repeat bg-white shadow-sm shadow-indigo-500/50'></div>

@@ -99,26 +99,9 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <main className='mocha bg-surface0 '>
       {authenticated ? <LHeader /> : <Header/>}
-      <div className=' mt-20 mocha flex relative gap-4 w-[1060px] m-auto text-text'>
-        <div className='w-2/3'>
-          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>About "{teacher.user_name}".</div>
-          <div>{teacher.description}.</div>
-          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>Reviews: {count}</div>
-          {review.map((item: any): any => (
-            <div className='flex w-full relative m-auto gap-8 border p-5 mb-10'>
-              <div className='w-10 h-10 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
-              <div className='w-2/3'>{item.text}.</div>
-              <div className='w-20 '>{item.stars} ⭐</div>
-            </div>
-              ))}
-            <div className='flex justify-end  mt-10 mb-20'>
-              <button onClick={handleReview} className=' bg-green text-base bold-lg rounded w-40 h-10'>Add a review</button>
-            </div>
-            {showAdditionalReview && <Review showAdditionalReview={showAdditionalReview} setShowAdditionalReview={setShowAdditionalReview} teacher_Id={params.id} />}
-            {showAdditionalContent && <Login showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />}
-        </div>
-        {isRotated ? 
-          <div className={`sticky top-40 w-1/3 h-[647px]`}>
+      <div className=' mt-20 items-center flex flex-col mocha lg:flex lg:flex-row relative gap-4 lg:w-[1060px] m-auto text-text'>
+                {isRotated ? 
+          <div className={`lg:sticky top-40 gl:w-1/3 w-[350px] h-[647px]`}>
             <div className={` flex flex-col relative h-[528px] bg-overlay2 shadow-2xl rounded-3xl items-center`}>
               <div className='w-[100%] h-2/3 rounded-t-3xl bg-catkout bg-contain bg-no-repeat bg-white shadow-sm'></div>
               <div className='flex flex-col relative w-[90%]'>
@@ -129,7 +112,7 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           </div> :
 
-          <div className={`sticky top-40 w-1/3 h-[647px]`}>
+          <div className={`sticky top-40 w-2/3 h-[647px]`}>
             <div className={` flex flex-col relative h-[528px] bg-overlay2 shadow-2xl rounded-3xl items-center`}>
               <div className=' text-[#221d3b] flex flex-col w-[100%] h-2/3 rounded-t-3xl bg-white shadow-sm'>
                 <div className="flex h-2/5 items-end p-2 border-b border-gray-200">
@@ -157,6 +140,24 @@ export default function Page({ params }: { params: { id: string } }) {
             </div>
           </div>
           }
+        <div className='lg:w-2/3 w-[90%]'>
+          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>About "{teacher.user_name}".</div>
+          <div>{teacher.description}.</div>
+          <div className='text-lavender text-2xl font-bold mt-10 mb-10'>Reviews: {count}</div>
+          {review.map((item: any): any => (
+            <div className='flex w-full relative m-auto gap-8 border p-5 mb-10'>
+              <div className='w-10 h-10 bg-no-repeat bg-contain border rounded-full bg-catkout'></div>
+              <div className='w-2/3'>{item.text}.</div>
+              <div className='w-20 '>{item.stars} ⭐</div>
+            </div>
+              ))}
+            <div className='flex justify-end  mt-10 mb-20'>
+              <button onClick={handleReview} className=' bg-green text-base bold-lg rounded w-40 h-10'>Add a review</button>
+            </div>
+            {showAdditionalReview && <Review showAdditionalReview={showAdditionalReview} setShowAdditionalReview={setShowAdditionalReview} teacher_Id={params.id} />}
+            {showAdditionalContent && <Login showAdditionalContent={showAdditionalContent} setShowAdditionalContent={setShowAdditionalContent} />}
+        </div>
+
       </div>
       <Footer/>
     </main>
