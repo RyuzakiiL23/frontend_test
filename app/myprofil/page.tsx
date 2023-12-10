@@ -241,11 +241,11 @@ export default function page() {
           }
           {data.location && info ? 
             <p>Cohort: {data.location}</p> :
-            <p>Cohort : <input className='text-base border m-2 pr-2 pl-2 lg:ml-8' type="text" value={cohort} onChange={handleCohortChange} /></p>
+            <p>Cohort : <br> <input className='text-base border m-2 pr-2 pl-2' type="text" value={cohort} onChange={handleCohortChange} /></p>
           }
           {data.user_discord && info ? 
             <p>Discord: {data.user_discord}</p> :
-            <p>Discord: <input className='text-base border m-2 pr-2 pl-2 lg:ml-8' type="text" value={discord} onChange={handleDiscord} /></p>
+            <p>Discord: <br> <input className='text-base border m-2 pr-2 pl-2' type="text" value={discord} onChange={handleDiscord} /></p>
           }
           {data.user_wtsp && info ? 
             <p>Whatsapp: {data.user_wtsp}</p> :
