@@ -293,9 +293,9 @@ export default function page() {
         <div>
         <div className='flex relative text-base flex-col border right-0 h-auto p-4 w-[300px] sm:w-[600px] lg:w-[700px]'>
           <div className='h-full'></div>
-            <p className='text-text w-[80%]'>{aboutMe}</p>
+            <p className='z-50 retaltive text-text w-[80%]'>{aboutMe}</p>
         </div>
-          <button onClick={handleDelete} className='lg:ml-[800px] sm:ml-[500px] ml-[200px] mt-10 gap-6 mb-20 mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
+          <button onClick={handleDelete} className=' z-50 relative lg:ml-[800px] sm:ml-[500px] ml-[200px] mt-10 gap-6 mb-20 mr-2 bg-red text-base bold-lg rounded w-20 h-10'>Delete</button>
       </div>
         </div>
         </div>
